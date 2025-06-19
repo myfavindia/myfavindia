@@ -1,0 +1,200 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fb;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 90px;
+    height: 100vh;
+    background: #232946;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.07);
+}
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin-top: 40px;
+}
+.sidebar ul li {
+    width: 100%;
+    margin-bottom: 20px;
+}
+.sidebar ul li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #eebbc3;
+    text-decoration: none;
+    padding: 18px 0 8px 0;
+    transition: background 0.2s, color 0.2s;
+    font-size: 1.2em;
+    border-radius: 12px;
+}
+.sidebar ul li a.active, .sidebar ul li a:hover {
+    background: #eebbc3;
+    color: #232946;
+}
+.sidebar ul li a i {
+    font-size: 2em;
+    margin-bottom: 6px;
+}
+.sidebar ul li a span {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.center-content {
+    margin-left: 120px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.btn {
+    display: inline-block;
+    background: #232946;
+    color: #eebbc3;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: 18px;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #eebbc3;
+    color: #232946;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    margin-top: 40px;
+}
+.flip-card {
+    background: transparent;
+    width: 260px;
+    height: 220px;
+    perspective: 1000px;
+}
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(.4,2,.6,.8);
+    transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 24px;
+}
+.flip-card-front {
+    color: #232946;
+}
+.flip-card-back {
+    background: #eebbc3;
+    color: #232946;
+    transform: rotateY(180deg);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.contact-form input, .contact-form textarea {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+    resize: none;
+}
+.contact-form button {
+    align-self: center;
+}
+
+.about-contact, .about-skills {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px 0;
+    text-align: left;
+    display: inline-block;
+}
+.about-contact li, .about-skills li {
+    margin-bottom: 6px;
+    font-size: 1.05em;
+}
+.resume-section {
+    margin-bottom: 32px;
+    text-align: left;
+    display: inline-block;
+}
+.resume-section h3 {
+    margin-top: 18px;
+    margin-bottom: 4px;
+    font-size: 1.1em;
+    color: #232946;
+}
+.resume-section ul {
+    margin-left: 18px;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+    .sidebar {
+        width: 60px;
+    }
+    .center-content {
+        margin-left: 70px;
+        padding: 20px 5px;
+    }
+    .card-grid {
+        gap: 16px;
+    }
+    .flip-card {
+        width: 180px;
+        height: 150px;
+    }
+}
