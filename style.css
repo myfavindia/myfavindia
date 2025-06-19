@@ -6,10 +6,11 @@
 }
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f4f6fb;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f4f6fb 100%);
     color: #222;
     min-height: 100vh;
     display: flex;
+    transition: background 0.5s;
 }
 
 .sidebar {
@@ -93,21 +94,28 @@ body {
 .card-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 40px;
     justify-content: center;
     margin-top: 40px;
 }
 .flip-card {
     background: transparent;
-    width: 260px;
-    height: 220px;
-    perspective: 1000px;
+    width: 340px;
+    height: 320px;
+    perspective: 1200px;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(35,41,70,0.13);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.flip-card:hover {
+    transform: scale(1.04) rotateZ(-1deg);
+    box-shadow: 0 16px 48px rgba(35,41,70,0.18);
 }
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(.4,2,.6,.8);
+    transition: transform 0.7s cubic-bezier(.4,2,.6,.8);
     transform-style: preserve-3d;
 }
 .flip-card:hover .flip-card-inner {
@@ -118,22 +126,50 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(35,41,70,0.08);
+    border-radius: 22px;
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #fff;
-    padding: 24px;
+    background: linear-gradient(135deg, #e0e7ff 60%, #eebbc3 100%);
+    padding: 36px 28px;
+    font-size: 1.15em;
+    color: #232946;
+    text-align: center;
+    border: 2px solid #eebbc3;
 }
 .flip-card-front {
     color: #232946;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.flip-card-front i {
+    margin-bottom: 18px;
+    color: #232946;
+    font-size: 3.5em;
+    filter: drop-shadow(0 2px 8px #eebbc3aa);
+}
+.flip-card-front h2 {
+    font-size: 1.4em;
+    margin-bottom: 0;
 }
 .flip-card-back {
-    background: #eebbc3;
+    background: linear-gradient(135deg, #eebbc3 60%, #fff 100%);
     color: #232946;
     transform: rotateY(180deg);
+    font-size: 1.08em;
+    font-weight: 500;
+    box-shadow: none;
+}
+.flip-card-back a {
+    color: #232946;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.flip-card-back a:hover {
+    color: #eebbc3;
 }
 
 .contact-form {
@@ -182,6 +218,87 @@ body {
     margin-bottom: 8px;
 }
 
+.premium-about {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 12px;
+}
+.hero-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #232946 60%, #eebbc3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 24px rgba(35,41,70,0.12);
+}
+.hero-img i {
+    color: #fff;
+    font-size: 4.5em;
+}
+.hero-text h1 {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #232946;
+    margin-bottom: 0.2em;
+}
+.hero-text h2 {
+    font-size: 1.2em;
+    color: #6d6d6d;
+    font-weight: 400;
+}
+.card.premium-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(35,41,70,0.10);
+    padding: 32px 28px;
+    width: 100%;
+    max-width: 650px;
+    text-align: left;
+    transition: box-shadow 0.2s;
+    border-left: 6px solid #eebbc3;
+    animation: fadeInUp 0.7s cubic-bezier(.4,2,.6,.8);
+}
+.card.premium-card:hover {
+    box-shadow: 0 8px 32px rgba(35,41,70,0.18);
+    border-left: 6px solid #232946;
+}
+.card.premium-card h2 {
+    color: #232946;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.about-contact li, .about-skills li {
+    margin-bottom: 8px;
+    font-size: 1.08em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.about-contact i, .about-skills i {
+    color: #eebbc3;
+    font-size: 1.1em;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 700px) {
     .sidebar {
         width: 60px;
@@ -191,10 +308,273 @@ body {
         padding: 20px 5px;
     }
     .card-grid {
-        gap: 16px;
+        gap: 20px;
     }
     .flip-card {
-        width: 180px;
-        height: 150px;
+        width: 90vw;
+        max-width: 340px;
+        height: 220px;
     }
+}
+
+/* About Page Premium Redesign */
+.about-hero-bg {
+    min-height: 100vh;
+    width: 100%;
+    margin-left: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(120deg, #eebbc3 0%, #e0e7ff 100%);
+    padding: 60px 0 40px 0;
+    animation: fadeInUp 1s cubic-bezier(.4,2,.6,.8);
+}
+.about-hero-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.85);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(35,41,70,0.13);
+    padding: 36px 48px;
+    gap: 36px;
+    margin-bottom: 32px;
+    max-width: 700px;
+    width: 100%;
+    animation: fadeInUp 1.2s cubic-bezier(.4,2,.6,.8);
+}
+.about-hero-img img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #eebbc3;
+    box-shadow: 0 2px 16px #eebbc3aa;
+    object-fit: cover;
+}
+.about-hero-info h1 {
+    font-size: 2.3em;
+    font-weight: 700;
+    color: #232946;
+    margin-bottom: 0.2em;
+}
+.about-hero-info h2 {
+    font-size: 1.2em;
+    color: #6d6d6d;
+    font-weight: 400;
+    margin-bottom: 0.5em;
+}
+.about-intro {
+    font-size: 1.1em;
+    color: #232946;
+    margin-bottom: 1em;
+}
+.about-quick {
+    display: flex;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #232946;
+}
+.about-quick li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1em;
+}
+.about-fun-facts {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.10);
+    padding: 24px 32px;
+    margin-bottom: 32px;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 1.4s cubic-bezier(.4,2,.6,.8);
+}
+.about-fun-facts h3 {
+    color: #232946;
+    margin-bottom: 10px;
+}
+.about-fun-facts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 24px;
+}
+.about-fun-facts li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.08em;
+    color: #232946;
+}
+.about-timeline {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.10);
+    padding: 24px 32px;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 1.6s cubic-bezier(.4,2,.6,.8);
+}
+.about-timeline h3 {
+    color: #232946;
+    margin-bottom: 10px;
+}
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    position: relative;
+}
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: #eebbc3;
+    border-radius: 50%;
+    margin-right: 18px;
+    border: 3px solid #232946;
+}
+.timeline-content h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #232946;
+}
+.timeline-content span {
+    font-size: 0.95em;
+    color: #6d6d6d;
+}
+
+/* Resume Premium Redesign */
+.premium-resume {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+.resume-hero {
+    text-align: center;
+    margin-bottom: 18px;
+}
+.resume-hero h1 {
+    font-size: 2.2em;
+    color: #232946;
+    margin-bottom: 0.2em;
+}
+.resume-skills {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.10);
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 18px;
+    animation: fadeInUp 1.2s cubic-bezier(.4,2,.6,.8);
+}
+.resume-skills h2 {
+    color: #232946;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.skill-bar {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.skill-bar span {
+    width: 120px;
+    font-weight: 600;
+    color: #232946;
+}
+.bar {
+    flex: 1;
+    height: 16px;
+    background: #e0e7ff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px #eebbc3aa;
+}
+.fill {
+    height: 100%;
+    background: linear-gradient(90deg, #eebbc3 0%, #232946 100%);
+    border-radius: 8px;
+    transition: width 1.2s cubic-bezier(.4,2,.6,.8);
+}
+.resume-timeline {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.10);
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 18px;
+    animation: fadeInUp 1.4s cubic-bezier(.4,2,.6,.8);
+}
+.resume-timeline h2 {
+    color: #232946;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.resume-timeline .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    position: relative;
+}
+.resume-timeline .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: #eebbc3;
+    border-radius: 50%;
+    margin-right: 18px;
+    border: 3px solid #232946;
+    margin-top: 8px;
+}
+.resume-timeline .timeline-content h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #232946;
+}
+.resume-timeline .timeline-content span {
+    font-size: 0.95em;
+    color: #6d6d6d;
+}
+.resume-timeline ul {
+    margin: 8px 0 0 0;
+    padding-left: 18px;
+}
+.resume-education {
+    background: rgba(255,255,255,0.85);
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(35,41,70,0.10);
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 650px;
+    margin-bottom: 18px;
+    animation: fadeInUp 1.6s cubic-bezier(.4,2,.6,.8);
+}
+.edu-card h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #232946;
+}
+.edu-card span {
+    font-size: 0.95em;
+    color: #6d6d6d;
+}
+.edu-card p {
+    margin: 6px 0 0 0;
+    color: #232946;
+    font-size: 1em;
 }
